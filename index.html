@@ -1,8 +1,49 @@
 <!doctype html>
 <html lang="fr">
   <head>
-    <!-- Google Tag Manager — deferred after page load to reduce TBT -->
-<script>window.addEventListener('load',function(){setTimeout(function(){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-N3WTXSRG');},2000)});</script>
+    <!-- Google Tag Manager — chargé uniquement si le visiteur a accepté les cookies analytiques -->
+<script>
+(function () {
+  var GTM_ID = 'GTM-N3WTXSRG';
+  var loaded = false;
+
+  function consented() {
+    try { return localStorage.getItem('cookie_consent') === 'accepted'; } catch (e) { return false; }
+  }
+
+  function loadGTM() {
+    if (loaded) return;
+    loaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  }
+
+  function clearAnalyticsCookies() {
+    var host = location.hostname;
+    var domains = ['', host, '.' + host, '.' + host.split('.').slice(-2).join('.')];
+    document.cookie.split(';').forEach(function (c) {
+      var name = c.split('=')[0].trim();
+      if (!/^(_ga|_gid|_gat)/.test(name)) return;
+      domains.forEach(function (d) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (d ? '; domain=' + d : '');
+      });
+    });
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(function () { if (consented()) loadGTM(); }, 2000);
+  });
+
+  window.addEventListener('cookie-consent-change', function (e) {
+    if (e.detail === 'accepted') loadGTM();
+    else clearAnalyticsCookies();
+  });
+})();
+</script>
 <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -48,10 +89,6 @@
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3WTXSRG"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
