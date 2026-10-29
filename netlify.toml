@@ -3,7 +3,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "22"
 
 # SPA fallback — toutes les routes React sont gérées par index.html
 [[redirects]]
