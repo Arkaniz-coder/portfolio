@@ -1,8 +1,8 @@
 const MarqueeTicker = () => {
   const words = [
-    "REACT", "NEXT.JS", "TAILWIND", "TYPESCRIPT", "PERFORMANCE",
-    "DESIGN", "E-COMMERCE", "SEO", "SUR-MESURE", "FULL STACK",
-    "RESPONSIVE", "UI/UX", "NETLIFY", "FIGMA", "NODE.JS",
+    "REACT", "NEXT.JS", "TAILWIND", "TYPESCRIPT", "SUPABASE",
+    "POSTGRESQL", "PERFORMANCE", "DESIGN", "SEO", "SUR-MESURE",
+    "FULL STACK", "RESPONSIVE", "TESTS AUTOMATISÉS",
   ];
 
   const content = words.map((w) => `${w} ✦`).join(" ");
