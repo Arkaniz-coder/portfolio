@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 const CGV = () => {
@@ -28,6 +29,11 @@ const CGV = () => {
                 Arkaniz, micro-entreprise, propose ses services de développement web,
                 de conception de sites internet et d'accompagnement digital aux
                 clients.
+              </p>
+              <p>
+                Elles s'appliquent à tout client, consommateur ou
+                professionnel. Les dispositions propres aux consommateurs sont
+                regroupées à l'article 12.
               </p>
             </div>
           </div>
@@ -129,6 +135,16 @@ const CGV = () => {
                 <p>
                   Les factures doivent être réglées dans les 30 jours suivant
                   leur date d'émission, sauf accord contraire préalable.
+                </p>
+                <p className="mt-3">
+                  Pour les clients professionnels, tout retard de paiement
+                  entraîne, de plein droit et sans mise en demeure préalable,
+                  des pénalités de retard au taux de trois fois le taux
+                  d'intérêt légal, exigibles dès le lendemain de la date
+                  d'échéance, ainsi qu'une indemnité forfaitaire de 40 € pour
+                  frais de recouvrement (articles L. 441-10 et D. 441-5 du Code
+                  de commerce). Aucun escompte n'est accordé en cas de paiement
+                  anticipé.
                 </p>
               </div>
             </div>
@@ -264,10 +280,95 @@ const CGV = () => {
           </div>
         </AnimateOnScroll>
 
-        {/* Confidentialité */}
+        {/* Clients consommateurs */}
         <AnimateOnScroll animation="fadeUp" delay={1.2}>
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-4">12. Confidentialité</h2>
+            <h2 className="text-2xl font-bold mb-4">12. Clients consommateurs</h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p>
+                Les dispositions suivantes s'appliquent uniquement au client
+                consommateur, c'est-à-dire à toute personne physique qui agit à
+                des fins qui n'entrent pas dans le cadre de son activité
+                professionnelle.
+              </p>
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">
+                  Droit de rétractation
+                </h3>
+                <p>
+                  Le client dispose d'un délai de <strong>14 jours</strong> à
+                  compter de la conclusion du contrat pour se rétracter, sans
+                  avoir à justifier de motif (articles L. 221-18 et suivants du
+                  Code de la consommation). Pour exercer ce droit, il notifie sa
+                  décision à Arkaniz avant l'expiration du délai, par message
+                  écrit (WhatsApp) ou au moyen du formulaire ci-dessous.
+                </p>
+                <p className="mt-3">
+                  Si le client demande expressément que la prestation commence
+                  avant la fin du délai de rétractation, il reste redevable,
+                  s'il se rétracte ensuite, d'un montant proportionnel à ce qui
+                  lui a été fourni jusqu'à la notification de sa rétractation
+                  (article L. 221-25). Le droit de rétractation ne peut plus
+                  être exercé lorsque la prestation a été pleinement exécutée
+                  avant la fin du délai, avec l'accord préalable exprès du
+                  client, qui reconnaît alors perdre son droit de rétractation
+                  (article L. 221-28).
+                </p>
+                <p className="mt-3">
+                  En cas de rétractation, Arkaniz rembourse les sommes versées,
+                  déduction faite le cas échéant du montant proportionnel dû, au
+                  plus tard 14 jours après avoir été informé de la décision du
+                  client, par le même moyen de paiement.
+                </p>
+              </div>
+              <div className="glass-subtle rounded-xl p-6 space-y-2 text-sm">
+                <p className="font-semibold text-foreground">
+                  Modèle de formulaire de rétractation
+                </p>
+                <p>
+                  À l'attention d'Arkaniz (coordonnées dans les mentions
+                  légales) :
+                </p>
+                <p>
+                  Je vous notifie par la présente ma rétractation du contrat
+                  portant sur la prestation de services ci-dessous :
+                </p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>Commandée le :</li>
+                  <li>Nom du consommateur :</li>
+                  <li>Adresse du consommateur :</li>
+                  <li>Date :</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">
+                  Garanties légales
+                </h3>
+                <p>
+                  Les présentes CGV ne privent pas le client consommateur des
+                  droits qu'il tient des dispositions légales impératives du
+                  Code de la consommation, notamment de la garantie légale de
+                  conformité.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">Litiges</h3>
+                <p>
+                  Le client consommateur peut saisir la juridiction
+                  territorialement compétente selon les règles de droit commun
+                  applicables aux consommateurs, notamment celle du lieu où il
+                  demeurait lors de la conclusion du contrat ou de la survenance
+                  du fait dommageable.
+                </p>
+              </div>
+            </div>
+          </div>
+        </AnimateOnScroll>
+
+        {/* Confidentialité */}
+        <AnimateOnScroll animation="fadeUp" delay={1.3}>
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold mb-4">13. Confidentialité</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
                 Les deux parties s'engagent à garder confidentielles les
@@ -277,24 +378,46 @@ const CGV = () => {
           </div>
         </AnimateOnScroll>
 
-        {/* Droit applicable */}
-        <AnimateOnScroll animation="fadeUp" delay={1.3}>
+        {/* Données personnelles */}
+        <AnimateOnScroll animation="fadeUp" delay={1.4}>
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-4">13. Droit applicable</h2>
+            <h2 className="text-2xl font-bold mb-4">14. Données personnelles</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Les présentes CGV sont régies par la loi française. Tout
-                différend sera soumis à la juridiction compétente du tribunal de
-                commerce.
+                Les données personnelles du client sont traitées conformément à
+                la{" "}
+                <Link
+                  to="/confidentialite"
+                  className="text-primary hover:underline"
+                >
+                  politique de confidentialité
+                </Link>{" "}
+                d'Arkaniz, qui précise leur utilisation, leur durée de
+                conservation et les droits dont dispose le client.
+              </p>
+            </div>
+          </div>
+        </AnimateOnScroll>
+
+        {/* Droit applicable */}
+        <AnimateOnScroll animation="fadeUp" delay={1.5}>
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold mb-4">15. Droit applicable</h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p>
+                Les présentes CGV sont régies par la loi française. Pour les
+                clients professionnels, tout différend relève du tribunal de
+                commerce compétent. Pour les clients consommateurs, les règles
+                de compétence prévues à l'article 12 s'appliquent.
               </p>
             </div>
           </div>
         </AnimateOnScroll>
 
         {/* Contact */}
-        <AnimateOnScroll animation="fadeUp" delay={1.4}>
+        <AnimateOnScroll animation="fadeUp" delay={1.6}>
           <div>
-            <h2 className="text-2xl font-bold mb-4">14. Questions et support</h2>
+            <h2 className="text-2xl font-bold mb-4">16. Questions et support</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
                 Pour toute question concernant les CGV ou votre contrat, veuillez
@@ -302,6 +425,9 @@ const CGV = () => {
               </p>
               <p className="font-semibold text-foreground">
                 <a href="https://wa.me/33744882821" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">WhatsApp : 07 44 88 28 21</a>
+              </p>
+              <p className="mt-6 text-xs">
+                <strong>Dernière mise à jour :</strong> 29 octobre 2026
               </p>
             </div>
           </div>
