@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Globe, RefreshCw, ArrowRight } from "lucide-react";
 import AnimateOnScroll, { StaggerContainer, StaggerItem } from "./AnimateOnScroll";
 
@@ -43,7 +42,7 @@ const ServicesOffres = () => {
           </p>
         </AnimateOnScroll>
 
-        <StaggerContainer className="grid md:grid-cols-2 gap-6 sm:gap-8" staggerDelay={0.15}>
+        <StaggerContainer className="grid md:grid-cols-2 gap-6 sm:gap-8">
           {services.map((service, i) => (
             <StaggerItem key={service.title} index={i}>
               <div className="rounded-2xl p-6 sm:p-8 border border-border bg-card/30 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_rgba(99,102,241,0.08)] h-full flex flex-col">

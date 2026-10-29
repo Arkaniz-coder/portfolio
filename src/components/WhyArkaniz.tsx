@@ -36,7 +36,7 @@ const WhyArkaniz = () => {
           </p>
         </AnimateOnScroll>
 
-        <StaggerContainer className="grid sm:grid-cols-3 gap-6" staggerDelay={0.15}>
+        <StaggerContainer className="grid sm:grid-cols-3 gap-6">
           {pillars.map((pillar, i) => (
             <StaggerItem key={pillar.title} index={i}>
               <div className="glass-subtle rounded-2xl p-6 sm:p-8 text-center group hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(99,102,241,0.08)]">

@@ -4,7 +4,8 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import logoArkaniz2x from "@/assets/logo-arkaniz.webp";
-import EasterEggToast, { useEasterEgg } from "@/components/EasterEggToast";
+import EasterEggToast from "@/components/EasterEggToast";
+import { useEasterEgg } from "@/hooks/use-easter-egg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,9 +55,7 @@ const Header = () => {
         <Link
           to="/"
           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
-          onClick={(e) => {
-            handleLogoTripleClick();
-          }}
+          onClick={handleLogoTripleClick}
         >
           <img
             src="/logo-arkaniz-1x.webp"

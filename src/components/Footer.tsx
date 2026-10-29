@@ -5,8 +5,9 @@ import AnimateOnScroll from "./AnimateOnScroll";
 import logoArkaniz1x from "@/assets/logo-arkaniz-1x.webp";
 import logoArkaniz2x from "@/assets/logo-arkaniz.webp";
 import { useRef, useCallback } from "react";
-import EasterEggToast, { useEasterEgg } from "@/components/EasterEggToast";
-import { resetCookieConsent } from "@/components/CookieConsent";
+import EasterEggToast from "@/components/EasterEggToast";
+import { useEasterEgg } from "@/hooks/use-easter-egg";
+import { resetCookieConsent } from "@/lib/cookie-consent";
 
 const Footer = () => {
   const dotEgg = useEasterEgg();

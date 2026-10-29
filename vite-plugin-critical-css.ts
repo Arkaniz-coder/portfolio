@@ -3,14 +3,12 @@ import * as fs from "fs";
 import * as path from "path";
 
 /**
- * Vite plugin that inlines critical CSS and async-loads the full stylesheet.
- * This eliminates the render-blocking CSS resource flagged by PageSpeed Insights.
+ * Vite plugin that inlines a hand-written critical CSS block and loads the full
+ * stylesheet asynchronously, so no CSS request blocks the first render.
  *
- * How it works:
- * 1. After build, reads the generated CSS file
- * 2. Extracts critical CSS rules (above-the-fold: variables, fonts, body, hero, header, glass, etc.)
- * 3. Inlines critical CSS in <style> tag in <head>
- * 4. Converts <link rel="stylesheet"> to async loading pattern
+ * After the build it finds the generated stylesheet link in dist/index.html,
+ * inlines the critical rules (variables, fonts, base styles, hero) in a <style>
+ * tag and turns the link into a preload that switches to a stylesheet on load.
  */
 export function criticalCssPlugin(): Plugin {
   return {
@@ -36,60 +34,7 @@ export function criticalCssPlugin(): Plugin {
 
       if (!fs.existsSync(cssFilePath)) return;
 
-      const fullCss = fs.readFileSync(cssFilePath, "utf-8");
-
-      // Extract critical CSS selectors/rules needed for above-the-fold rendering
-      const criticalPatterns = [
-        // CSS reset & base
-        /\*,::after,::before\{[^}]+\}/g,
-        /\*,::before,::after\{[^}]+\}/g,
-        // Root variables
-        /:root\{[^}]+\}/g,
-        /:root,[^{]*\{[^}]*--background[^}]+\}/g,
-        // Body & html
-        /body\{[^}]+\}/g,
-        /html\{[^}]+\}/g,
-        // Font faces
-        /@font-face\{[^}]+\}/g,
-        // Gradient mesh (hero bg)
-        /\.gradient-mesh\{[^}]+\}/g,
-        /\.gradient-mesh::before\{[^}]+\}/g,
-        // Aurora glow (hero)
-        /\.aurora-glow\{[^}]+\}/g,
-        // Glass
-        /\.glass\{[^}]+\}/g,
-        /\.glass-subtle\{[^}]+\}/g,
-        // Typography
-        /\.heading-glow\{[^}]+\}/g,
-        /\.text-gradient-animate\{[^}]+\}/g,
-        /\.text-gradient\{[^}]+\}/g,
-        // Hero animations
-        /\.hero-animate\{[^}]+\}/g,
-        /\.hero-letter\{[^}]+\}/g,
-        /\.hero-word\{[^}]+\}/g,
-        // Grain overlay
-        /\.grain-overlay\{[^}]+\}/g,
-        // Label mono
-        /\.label-mono\{[^}]+\}/g,
-        /\.label-mono::before\{[^}]+\}/g,
-        // Blob morph
-        /\.blob-morph\{[^}]+\}/g,
-        // Keyframes (critical)
-        /@keyframes hero-fade-up\{[^}]+\}/g,
-        /@keyframes hero-letter-in\{[^}]+\}/g,
-        /@keyframes hero-word-in\{[^}]+\}/g,
-        /@keyframes scroll-bounce\{[^}]+(?:\{[^}]*\}[^}]*)*\}/g,
-        /@keyframes scroll-fade-in\{[^}]+(?:\{[^}]*\}[^}]*)*\}/g,
-        /@keyframes mesh-drift\{[^}]+(?:\{[^}]*\}[^}]*)*\}/g,
-        /@keyframes aurora-shift\{[^}]+(?:\{[^}]*\}[^}]*)*\}/g,
-        /@keyframes page-enter\{[^}]+\}/g,
-        /@keyframes contact-pop-in\{[^}]+\}/g,
-        /@keyframes morph-composited\{[^}]+(?:\{[^}]*\}[^}]*)*\}/g,
-      ];
-
-      // Since the CSS is minified, we need a better approach.
-      // Instead of regex on minified CSS, let's inline the most critical CSS manually
-      // and just async-load the full stylesheet.
+      // Critical CSS écrit à la main : à tenir à jour avec les styles visibles au premier affichage (src/index.css).
       const criticalCss = `
 :root{--background:228 20% 5%;--foreground:220 20% 95%;--card:228 18% 9%;--card-foreground:220 20% 95%;--primary:239 84% 67%;--primary-foreground:0 0% 100%;--secondary:228 18% 14%;--secondary-foreground:220 20% 95%;--muted:228 15% 16%;--muted-foreground:220 15% 65%;--accent:239 84% 67%;--accent-foreground:0 0% 100%;--border:228 15% 15%;--input:228 18% 14%;--ring:239 84% 67%;--radius:0.75rem;--accent-violet:280 80% 65%;--accent-warm:38 90% 55%}
 *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:hsl(228 15% 15%)}

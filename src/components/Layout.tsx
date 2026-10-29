@@ -29,7 +29,7 @@ const Layout = () => {
     // Reset animation
     el.style.animation = "none";
     // Force reflow
-    el.offsetHeight;
+    void el.offsetHeight;
     el.style.animation = "page-enter 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards";
   }, [location.pathname]);
 

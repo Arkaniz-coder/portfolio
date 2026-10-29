@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 interface EasterEggToastProps {
   show: boolean;
@@ -48,17 +48,3 @@ const EasterEggToast = ({ show, emoji, eggNumber, message, onClose }: EasterEggT
 };
 
 export default EasterEggToast;
-
-export const useEasterEgg = () => {
-  const [show, setShow] = useState(false);
-
-  const trigger = () => {
-    setShow(true);
-  };
-
-  const close = () => {
-    setShow(false);
-  };
-
-  return { show, trigger, close };
-};

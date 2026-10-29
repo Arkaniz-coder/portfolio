@@ -164,7 +164,7 @@ const PortfolioPage = () => {
 
           {/* Stats — project characteristics, not vanity metrics */}
           <AnimateOnScroll>
-            <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto" staggerDelay={0.1}>
+            <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               {[
                 { value: "2 sem", label: "Délai de livraison" },
                 { value: "Mobile-first", label: "Approche responsive" },
@@ -308,7 +308,7 @@ const PortfolioPage = () => {
 
           {/* Stats projet */}
           <AnimateOnScroll>
-            <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto" staggerDelay={0.1}>
+            <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               {[
                 { value: "Full stack", label: "Front + Back intégré" },
                 { value: "Stripe", label: "Paiements simulés" },

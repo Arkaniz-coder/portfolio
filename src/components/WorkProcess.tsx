@@ -58,7 +58,7 @@ const WorkProcess = () => {
           </p>
         </AnimateOnScroll>
 
-        <StaggerContainer className="grid md:grid-cols-4 gap-6 relative" staggerDelay={0.15}>
+        <StaggerContainer className="grid md:grid-cols-4 gap-6 relative">
           {/* Connection line */}
           <div className="hidden md:block absolute top-16 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-primary/30 via-primary/80 to-primary/30 shadow-[0_0_8px_hsl(239_84%_67%/0.4)]" />
 

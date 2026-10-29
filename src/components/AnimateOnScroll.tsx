@@ -90,11 +90,9 @@ export default AnimateOnScroll;
 export const StaggerContainer = ({
   children,
   className = "",
-  staggerDelay = 0.1,
 }: {
   children: ReactNode;
   className?: string;
-  staggerDelay?: number;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);

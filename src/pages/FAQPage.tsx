@@ -148,7 +148,7 @@ const FaqPage = () => {
             </div>
           </AnimateOnScroll>
 
-          <StaggerContainer className="space-y-4" staggerDelay={0.1}>
+          <StaggerContainer className="space-y-4">
             {myths.map((item) => (
               <StaggerItem key={item.myth}>
                 <div className="grid md:grid-cols-2 gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg border border-border">
@@ -188,7 +188,7 @@ const FaqPage = () => {
               </h2>
             </div>
           </AnimateOnScroll>
-          <StaggerContainer className="space-y-3" staggerDelay={0.08}>
+          <StaggerContainer className="space-y-3">
             {faqItems.map((item) => (
               <StaggerItem key={item.q}>
                 <FaqItem question={item.q} answer={item.a} />

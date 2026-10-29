@@ -4,7 +4,7 @@ import path from "path";
 import { criticalCssPlugin } from "./vite-plugin-critical-css";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   server: {
     host: "::",
     port: 8080,
@@ -12,10 +12,7 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [
-    react(),
-    criticalCssPlugin(),
-  ].filter(Boolean),
+  plugins: [react(), criticalCssPlugin()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -33,4 +30,4 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
-}));
+});
