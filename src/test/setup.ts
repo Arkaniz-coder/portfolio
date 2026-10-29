@@ -1,4 +1,4 @@
-import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/vitest";
 
 // Les tests qui tournent en environnement Node n'ont pas de `window`.
 if (typeof window !== "undefined") {
