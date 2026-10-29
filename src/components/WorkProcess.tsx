@@ -1,5 +1,5 @@
 import AnimateOnScroll, { StaggerContainer, StaggerItem } from "./AnimateOnScroll";
-import { MessageCircle, Palette, Code2, ShoppingCart } from "lucide-react";
+import { MessageCircle, Palette, Code2, Rocket } from "lucide-react";
 
 const steps = [
   {
@@ -24,7 +24,7 @@ const steps = [
     color: "from-primary/20 to-primary/5",
   },
   {
-    icon: ShoppingCart,
+    icon: Rocket,
     number: "04",
     title: "Livraison",
     description: "Tests, mise en ligne et documentation. Vous êtes autonome dès le premier jour.",

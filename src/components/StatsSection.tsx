@@ -48,7 +48,7 @@ const AnimatedCounter = ({
 };
 
 const stats = [
-  { label: "Satisfaction client", value: <AnimatedCounter target={100} suffix="%" /> },
+  { label: "Sites en production", value: <AnimatedCounter target={2} /> },
   { label: "Délai de livraison", value: "2-6 sem", isText: true },
   { label: "Réponse garantie", value: "24h", isText: true },
   { label: "À partir de", value: <AnimatedCounter target={690} suffix="€" /> },

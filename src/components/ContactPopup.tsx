@@ -16,7 +16,7 @@ const ContactPopup = ({ onClose }: { onClose: () => void }) => (
     >
       <h3 className="text-lg font-bold mb-2">Un projet en tête ?</h3>
       <p className="text-sm text-muted-foreground mb-6">
-        Discutons-en ensemble. Choisissez le canal qui vous convient le mieux, je vous réponds sous 24h.
+        Discutons-en ensemble. Écrivez-moi sur WhatsApp, je vous réponds sous 24h.
       </p>
 
       <div className="space-y-3">

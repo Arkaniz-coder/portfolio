@@ -73,8 +73,7 @@ const Confidentialite = () => {
                   <strong className="text-foreground">
                     Votre consentement :
                   </strong>{" "}
-                  pour le dépôt de cookies non essentiels et l'envoi de
-                  formulaires de contact
+                  pour le dépôt de cookies non essentiels (mesure d'audience)
                 </li>
                 <li>
                   <strong className="text-foreground">
@@ -113,16 +112,13 @@ const Confidentialite = () => {
                   a) Données fournies volontairement
                 </h3>
                 <p>
-                  Lorsque vous remplissez un formulaire de contact ou de
-                  demande de devis, nous collectons :
+                  Lorsque vous nous contactez via WhatsApp, nous recevons les
+                  informations que vous choisissez de nous transmettre :
                 </p>
                 <ul className="list-disc pl-5 space-y-1 mt-2">
-                  <li>Nom et prénom</li>
-                  <li>Adresse email</li>
-                  <li>Numéro de téléphone (optionnel)</li>
-                  <li>Nom de l'entreprise/organisation (optionnel)</li>
-                  <li>Description de votre projet et message</li>
-                  <li>Budget et type de prestation souhaités</li>
+                  <li>Nom ou pseudonyme affiché sur WhatsApp</li>
+                  <li>Numéro de téléphone</li>
+                  <li>Contenu de vos messages (description de votre projet, budget souhaité, etc.)</li>
                 </ul>
               </div>
               <div className="mt-4">
@@ -251,13 +247,12 @@ const Confidentialite = () => {
               <div className="mt-4 space-y-4">
                 <div className="glass-subtle rounded-xl p-4">
                   <h3 className="font-semibold text-foreground mb-1">
-                    FormSubmit.co — Traitement des formulaires
+                    WhatsApp (Meta) — Messagerie
                   </h3>
                   <p>
-                    Les données saisies dans le formulaire de contact sont
-                    transmises via FormSubmit.co pour permettre l'envoi du
-                    message par email. Ce service ne stocke pas vos données
-                    au-delà du traitement.
+                    Lorsque vous nous contactez via WhatsApp, vos messages
+                    transitent par ce service, soumis à sa propre politique de
+                    confidentialité.
                   </p>
                 </div>
                 <div className="glass-subtle rounded-xl p-4">
@@ -285,7 +280,7 @@ const Confidentialite = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Certains de nos prestataires techniques (Netlify, FormSubmit)
+                Certains de nos prestataires techniques (Netlify, Meta)
                 sont basés aux États-Unis. Ces transferts sont encadrés par
                 les clauses contractuelles types (CCT) approuvées par la
                 Commission européenne, conformément à l'article 46 du RGPD,
@@ -450,7 +445,7 @@ const Confidentialite = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Pour exercer vos droits, adressez votre demande par email à :
+                Pour exercer vos droits, adressez votre demande par message à :
               </p>
               <p className="font-semibold text-primary text-lg">
                 <a href="https://wa.me/33744882821" target="_blank" rel="noopener noreferrer" className="hover:underline">WhatsApp : 07 44 88 28 21</a>
@@ -525,7 +520,7 @@ const Confidentialite = () => {
                 </Link>
               </div>
               <p className="mt-6 text-xs">
-                <strong>Dernière mise à jour :</strong> 17 février 2026
+                <strong>Dernière mise à jour :</strong> 29 octobre 2026
               </p>
             </div>
           </div>

@@ -245,7 +245,7 @@ const PortfolioPage = () => {
                 <div className="space-y-4">
                   {[
                     { icon: Gamepad2, label: "Plateforme complète", desc: "Créer un espace où les créateurs indépendants publient et monétisent leurs projets sans intermédiaire", num: "01" },
-                    { icon: Coins, label: "Paiement intégré", desc: "Intégrer Stripe pour des transactions sécurisées, avec 90 % des revenus reversés au créateur", num: "02" },
+                    { icon: Coins, label: "Parcours de paiement", desc: "Simuler le paiement avec Stripe en mode démo, avec 90 % des revenus reversés au créateur", num: "02" },
                     { icon: Users, label: "Expérience communauté", desc: "Permettre aux fans de soutenir, commenter et suivre les créateurs qu'ils aiment", num: "03" },
                     { icon: FlaskConical, label: "Tests automatisés", desc: "Garantir la fiabilité avec des tests E2E Playwright et des tests unitaires Vitest", num: "04" },
                   ].map((obj) => (
@@ -277,7 +277,7 @@ const PortfolioPage = () => {
                   {[
                     "Interface créateur : publication de jeux et courts-métrages",
                     "Système d'authentification complet via Supabase",
-                    "Paiement sécurisé Stripe avec reversement 90/10",
+                    "Paiement Stripe en mode démo, avec reversement 90/10",
                     "Dashboard admin : gestion des projets et statistiques",
                     "Tests E2E Playwright + tests unitaires Vitest",
                     "Design system sombre cohérent, responsive mobile",
@@ -311,7 +311,7 @@ const PortfolioPage = () => {
             <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto" staggerDelay={0.1}>
               {[
                 { value: "Full stack", label: "Front + Back intégré" },
-                { value: "Stripe", label: "Paiement en ligne" },
+                { value: "Stripe", label: "Paiements simulés" },
                 { value: "E2E testée", label: "Playwright + Vitest" },
                 { value: "Démo live", label: "En ligne sur Workers" },
               ].map((result) => (

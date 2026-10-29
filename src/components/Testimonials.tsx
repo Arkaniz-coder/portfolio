@@ -74,7 +74,7 @@ const Testimonials = () => {
                 </div>
 
                 <p className="text-muted-foreground mb-4 text-sm leading-relaxed flex-1">
-                  Plateforme de financement participatif pour créateurs de jeux vidéo et courts-métrages indépendants. Stack complète : React 18, TypeScript, Supabase, Stripe, Playwright.
+                  Plateforme de financement participatif pour créateurs de jeux vidéo et courts-métrages indépendants. Projet de démonstration (paiements simulés) : React 18, TypeScript, Supabase, Stripe, Playwright.
                 </p>
 
                 <div className="flex flex-wrap gap-1.5 mb-5">

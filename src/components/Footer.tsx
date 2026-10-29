@@ -82,11 +82,8 @@ const Footer = () => {
               <Link to="/" className="flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity">
                 <img src={logoArkaniz1x} srcSet={`${logoArkaniz1x} 1x, ${logoArkaniz2x} 2x`} alt="Arkaniz" className="h-8 w-auto" width="168" height="32" style={{ filter: "brightness(0) invert(1)" }} />
               </Link>
-              <p className="text-sm text-muted-foreground mb-4">
+              <p className="text-sm text-muted-foreground">
                 Développeur web freelance. Sites vitrines, e-commerce et applications web sur-mesure.
-              </p>
-              <p className="text-xs text-muted-foreground">
-                100% Remote — France entière
               </p>
             </div>
 

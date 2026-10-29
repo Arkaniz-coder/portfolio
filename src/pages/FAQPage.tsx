@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimateOnScroll, { StaggerContainer, StaggerItem } from "@/components/AnimateOnScroll";
-import { ChevronDown, Send } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { ChevronDown, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // FAQ Accordion Item
@@ -45,49 +42,10 @@ const FaqItem = ({ question, answer }: { question: string; answer: string }) => 
 };
 
 const FaqPage = () => {
-  const [questionName, setQuestionName] = useState("");
-  const [questionEmail, setQuestionEmail] = useState("");
-  const [questionText, setQuestionText] = useState("");
-  const [isSending, setIsSending] = useState(false);
-  const [sent, setSent] = useState(false);
-
-  const handleQuestionSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!questionName.trim() || !questionEmail.trim() || !questionText.trim()) return;
-    setIsSending(true);
-
-    try {
-      const res = await fetch("/.netlify/functions/send-devis", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: questionName,
-          email: questionEmail,
-          project: "Question depuis la FAQ",
-          design: "—",
-          content: "—",
-          features: "—",
-          urgency: "—",
-          budget: "—",
-          description: questionText,
-        }),
-      });
-      if (!res.ok) throw new Error("Envoi refusé");
-      setSent(true);
-      setQuestionName("");
-      setQuestionEmail("");
-      setQuestionText("");
-    } catch {
-      alert("Erreur lors de l'envoi. Réessayez ou contactez-nous via WhatsApp.");
-    } finally {
-      setIsSending(false);
-    }
-  };
-
   const faqItems = [
     {
       q: "Combien coûte un site web ?",
-      a: "Mes tarifs commencent à 690€ HT. Le prix final dépend des fonctionnalités, du design et du délai. Utilisez le configurateur de devis pour une estimation rapide.",
+      a: "Mes tarifs commencent à 690€ HT. Le prix final dépend des fonctionnalités, du design et du délai. Écrivez-moi sur WhatsApp pour une estimation rapide.",
     },
     {
       q: "Quel est le délai de livraison ?",
@@ -103,7 +61,7 @@ const FaqPage = () => {
     },
     {
       q: "Est-ce que je serai propriétaire du site ?",
-      a: "Oui, à 100%. Vous recevez le code source complet, tous les accès (hébergement, domaine, CMS) et une documentation technique. Le site est à vous.",
+      a: "Oui, à 100%. Vous recevez le code source complet, tous les accès (hébergement, domaine) et une documentation technique. Le site est à vous.",
     },
     {
       q: "Proposez-vous de la maintenance ?",
@@ -111,22 +69,22 @@ const FaqPage = () => {
     },
     {
       q: "Quelles technologies utilisez-vous ?",
-      a: "React, Next.js, Tailwind CSS, TypeScript pour le front-end. Node.js, Supabase ou Strapi pour le back-end si nécessaire. Hébergement Netlify pour des performances optimales.",
+      a: "React, TypeScript et Tailwind CSS pour le front-end. Supabase (PostgreSQL) pour le back-end si nécessaire. Tests automatisés avec Vitest et Playwright. Hébergement sur Netlify.",
     },
     {
       q: "Travaillez-vous avec des entreprises ?",
-      a: "Absolument. Je travaille avec tous types de structures : entreprises (TPE, PME, startups), indépendants, associations, e-commerçants... Quel que soit votre secteur, si votre projet a du potentiel, on collabore.",
+      a: "Oui. Je travaille avec des indépendants, des artistes, des associations et des entreprises (TPE, PME, startups). Quel que soit votre secteur, si votre projet a du potentiel, on peut collaborer.",
     },
     {
       q: "Mon entreprise a des besoins spécifiques, vous pouvez vous adapter ?",
-      a: "Chaque projet est sur-mesure. Je m'adapte à vos contraintes techniques, votre charte graphique, vos outils existants (CRM, ERP, API tierces). On définit ensemble un cahier des charges précis.",
+      a: "Chaque projet est sur-mesure. Je m'adapte à vos contraintes techniques, à votre charte graphique et à vos outils existants. On définit ensemble un cahier des charges précis.",
     },
   ];
 
   const myths = [
     {
       myth: "Un site web coûte forcément une fortune",
-      reality: "Mes tarifs démarrent à 690€ HT avec un rapport qualité/prix imbattable. Pas de frais cachés.",
+      reality: "Mes tarifs démarrent à 690€ HT, avec un devis clair et sans frais cachés.",
     },
     {
       myth: "Un freelance est moins fiable qu'une agence",
@@ -134,7 +92,7 @@ const FaqPage = () => {
     },
     {
       myth: "Ce n'est pas adapté pour une entreprise",
-      reality: "Je travaille avec des entreprises de toutes tailles. Même rigueur, mêmes engagements contractuels, avec plus de flexibilité et de réactivité qu'une agence.",
+      reality: "Je travaille avec des indépendants et des entreprises. Même rigueur, mêmes engagements contractuels, avec plus de flexibilité et de réactivité qu'une agence.",
     },
     {
       myth: "Il faut des mois pour avoir un site",
@@ -250,83 +208,24 @@ const FaqPage = () => {
                 Pas trouvé la <span className="text-gradient">réponse</span> ?
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base">
-                Posez votre question, je vous réponds sous 24h.
+                Écrivez-moi directement, je vous réponds sous 24h.
               </p>
             </div>
           </AnimateOnScroll>
 
           <AnimateOnScroll animation="fadeUp" delay={0.1}>
-            {sent ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center p-8 sm:p-12 rounded-xl border border-primary/30 bg-primary/5"
+            <div className="text-center">
+              <Button
+                asChild
+                size="lg"
+                className="bg-[hsl(239_84%_50%)] text-white hover:bg-[hsl(239_84%_55%)] px-10 py-6 text-sm tracking-[0.15em] uppercase font-semibold rounded-xl hover:shadow-[0_0_40px_rgba(99,102,241,0.4)] hover:scale-[1.02] transition-all duration-300"
               >
-                <div className="text-4xl mb-4">✓</div>
-                <h3 className="text-xl font-bold mb-2">Question envoyée !</h3>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Merci, je vous réponds sous 24h.
-                </p>
-                <Button
-                  variant="outline"
-                  onClick={() => setSent(false)}
-                  className="tracking-wider uppercase text-xs"
-                >
-                  Poser une autre question
-                </Button>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleQuestionSubmit} className="space-y-4 p-6 sm:p-8 rounded-xl border border-border bg-card/50">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium mb-1.5 block">Nom *</label>
-                    <Input
-                      value={questionName}
-                      onChange={(e) => setQuestionName(e.target.value)}
-                      placeholder="Votre nom ou entreprise"
-                      className="bg-background border-border"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-1.5 block">Email *</label>
-                    <Input
-                      type="email"
-                      value={questionEmail}
-                      onChange={(e) => setQuestionEmail(e.target.value)}
-                      placeholder="votre@email.com"
-                      className="bg-background border-border"
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1.5 block">Votre question *</label>
-                  <Textarea
-                    value={questionText}
-                    onChange={(e) => setQuestionText(e.target.value)}
-                    placeholder="Décrivez votre question ou votre besoin..."
-                    rows={4}
-                    className="bg-background border-border"
-                    required
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  disabled={isSending}
-                  className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 tracking-wider uppercase text-xs px-8 py-5"
-                >
-                  {isSending ? (
-                    "Envoi en cours..."
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4 mr-2" />
-                      Envoyer ma question
-                    </>
-                  )}
-                </Button>
-              </form>
-            )}
+                <a href="https://wa.me/33744882821" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                  <MessageCircle className="w-4 h-4" />
+                  Écrire sur WhatsApp
+                </a>
+              </Button>
+            </div>
           </AnimateOnScroll>
         </div>
       </section>

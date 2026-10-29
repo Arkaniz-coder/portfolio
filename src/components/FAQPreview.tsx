@@ -40,7 +40,7 @@ const FaqAccordion = ({ question, answer }: { question: string; answer: string }
 const previewFaqs = [
   {
     q: "Combien coûte un site web ?",
-    a: "Mes tarifs commencent à 690€ HT. Le prix final dépend des fonctionnalités, du design et du délai. Utilisez le configurateur de devis pour une estimation rapide.",
+    a: "Mes tarifs commencent à 690€ HT. Le prix final dépend des fonctionnalités, du design et du délai. Écrivez-moi sur WhatsApp pour une estimation rapide.",
   },
   {
     q: "Quel est le délai de livraison ?",
@@ -52,7 +52,7 @@ const previewFaqs = [
   },
   {
     q: "Est-ce que je serai propriétaire du site ?",
-    a: "Oui, à 100%. Vous recevez le code source complet, tous les accès (hébergement, domaine, CMS) et une documentation technique. Le site est à vous.",
+    a: "Oui, à 100%. Vous recevez le code source complet, tous les accès (hébergement, domaine) et une documentation technique. Le site est à vous.",
   },
 ];
 
