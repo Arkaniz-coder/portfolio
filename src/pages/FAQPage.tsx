@@ -1,0 +1,338 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import AnimateOnScroll, { StaggerContainer, StaggerItem } from "@/components/AnimateOnScroll";
+import { ChevronDown, Send } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+
+// FAQ Accordion Item
+const FaqItem = ({ question, answer }: { question: string; answer: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="border border-border rounded-lg overflow-hidden">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full p-4 sm:p-5 flex items-center justify-between text-left hover:bg-card/50 transition-colors"
+      >
+        <span className="font-medium pr-4 text-sm sm:text-base">{question}</span>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+        </motion.div>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-sm text-muted-foreground leading-relaxed">
+              {answer}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const FaqPage = () => {
+  const [questionName, setQuestionName] = useState("");
+  const [questionEmail, setQuestionEmail] = useState("");
+  const [questionText, setQuestionText] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  const handleQuestionSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!questionName.trim() || !questionEmail.trim() || !questionText.trim()) return;
+    setIsSending(true);
+
+    try {
+      const res = await fetch("/.netlify/functions/send-devis", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: questionName,
+          email: questionEmail,
+          project: "Question depuis la FAQ",
+          design: "—",
+          content: "—",
+          features: "—",
+          urgency: "—",
+          budget: "—",
+          description: questionText,
+        }),
+      });
+      if (!res.ok) throw new Error("Envoi refusé");
+      setSent(true);
+      setQuestionName("");
+      setQuestionEmail("");
+      setQuestionText("");
+    } catch {
+      alert("Erreur lors de l'envoi. Réessayez ou contactez-nous via WhatsApp.");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  const faqItems = [
+    {
+      q: "Combien coûte un site web ?",
+      a: "Mes tarifs commencent à 690€ HT. Le prix final dépend des fonctionnalités, du design et du délai. Utilisez le configurateur de devis pour une estimation rapide.",
+    },
+    {
+      q: "Quel est le délai de livraison ?",
+      a: "En moyenne : 2-3 semaines pour une landing page, 3-4 semaines pour un site vitrine, 5-6 semaines pour un e-commerce. Des options de livraison accélérée sont disponibles.",
+    },
+    {
+      q: "Comment se passe le paiement ?",
+      a: "50% d'acompte à la signature du devis, 50% avant la mise en ligne. Paiement par virement bancaire. Un échelonnement est possible pour les projets importants.",
+    },
+    {
+      q: "Que se passe-t-il si le résultat ne me plaît pas ?",
+      a: "Chaque projet inclut des allers-retours de révisions. Je m'assure que le design correspond à votre vision avant de passer au développement. Votre satisfaction est ma priorité.",
+    },
+    {
+      q: "Est-ce que je serai propriétaire du site ?",
+      a: "Oui, à 100%. Vous recevez le code source complet, tous les accès (hébergement, domaine, CMS) et une documentation technique. Le site est à vous.",
+    },
+    {
+      q: "Proposez-vous de la maintenance ?",
+      a: "Oui. Un support post-livraison est inclus avec chaque projet. Des forfaits de maintenance mensuelle sont aussi disponibles à partir de 49€/mois.",
+    },
+    {
+      q: "Quelles technologies utilisez-vous ?",
+      a: "React, Next.js, Tailwind CSS, TypeScript pour le front-end. Node.js, Supabase ou Strapi pour le back-end si nécessaire. Hébergement Netlify pour des performances optimales.",
+    },
+    {
+      q: "Travaillez-vous avec des entreprises ?",
+      a: "Absolument. Je travaille avec tous types de structures : entreprises (TPE, PME, startups), indépendants, associations, e-commerçants... Quel que soit votre secteur, si votre projet a du potentiel, on collabore.",
+    },
+    {
+      q: "Mon entreprise a des besoins spécifiques, vous pouvez vous adapter ?",
+      a: "Chaque projet est sur-mesure. Je m'adapte à vos contraintes techniques, votre charte graphique, vos outils existants (CRM, ERP, API tierces). On définit ensemble un cahier des charges précis.",
+    },
+  ];
+
+  const myths = [
+    {
+      myth: "Un site web coûte forcément une fortune",
+      reality: "Mes tarifs démarrent à 690€ HT avec un rapport qualité/prix imbattable. Pas de frais cachés.",
+    },
+    {
+      myth: "Un freelance est moins fiable qu'une agence",
+      reality: "Un seul interlocuteur = communication directe, réactivité maximale et implication totale sur votre projet.",
+    },
+    {
+      myth: "Ce n'est pas adapté pour une entreprise",
+      reality: "Je travaille avec des entreprises de toutes tailles. Même rigueur, mêmes engagements contractuels, avec plus de flexibilité et de réactivité qu'une agence.",
+    },
+    {
+      myth: "Il faut des mois pour avoir un site",
+      reality: "2 à 6 semaines selon la complexité. Un processus optimisé pour des livraisons rapides sans sacrifier la qualité.",
+    },
+    {
+      myth: "Le design, c'est juste du beau",
+      reality: "Chaque choix de design est pensé pour la conversion : structure, hiérarchie visuelle, parcours utilisateur, vitesse.",
+    },
+    {
+      myth: "Je peux faire pareil avec un constructeur gratuit",
+      reality: "Un site sur-mesure = performance, SEO, identité unique. Un template gratuit ne vous différenciera jamais de vos concurrents.",
+    },
+  ];
+
+  return (
+    <>
+      {/* Hero — Split layout with sidebar card (unique to FAQ) */}
+      <section className="py-16 sm:py-24 pt-28 sm:pt-36 px-4 gradient-mesh-subtle">
+        <div className="container max-w-5xl">
+          <div className="grid md:grid-cols-[1fr_auto] gap-8 sm:gap-12 items-end">
+            <AnimateOnScroll animation="fadeLeft">
+              <div>
+                <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 tracking-tight heading-glow">
+                  Vos <span className="text-gradient">questions</span>
+                </h1>
+                <p className="text-muted-foreground text-base sm:text-lg">
+                  Tout ce qu'il faut savoir avant de se lancer.{" "}
+                  <a href="https://wa.me/33744882821" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Écrivez-moi →</a>
+                </p>
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll animation="fadeRight">
+              <div className="glass-subtle border border-border rounded-xl p-6 text-center min-w-[160px] hidden md:block">
+                <div className="text-3xl font-bold text-gradient-animate font-display mb-1">24h</div>
+                <div className="text-xs text-muted-foreground uppercase tracking-wider">Temps de réponse</div>
+              </div>
+            </AnimateOnScroll>
+          </div>
+        </div>
+      </section>
+
+      {/* Mythes vs Réalité — en premier */}
+      <section className="py-16 sm:py-28 px-4 gradient-mesh">
+        <div className="container max-w-4xl">
+          <AnimateOnScroll>
+            <div className="text-center mb-8 sm:mb-12">
+              <p className="label-mono mb-4 text-center">Idées reçues</p>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold">
+                Mythes <span className="text-muted-foreground">vs</span> <span className="text-gradient">Réalité</span>
+              </h2>
+            </div>
+          </AnimateOnScroll>
+
+          <StaggerContainer className="space-y-4" staggerDelay={0.1}>
+            {myths.map((item) => (
+              <StaggerItem key={item.myth}>
+                <div className="grid md:grid-cols-2 gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg border border-border">
+                  <div className="flex items-start gap-3">
+                    <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-destructive/10 border border-destructive/30 flex items-center justify-center text-sm flex-shrink-0 mt-0.5">
+                      ✗
+                    </span>
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Mythe</p>
+                      <p className="text-sm text-muted-foreground">{item.myth}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-sm text-primary flex-shrink-0 mt-0.5">
+                      ✓
+                    </span>
+                    <div>
+                      <p className="text-xs text-primary uppercase tracking-wider mb-1">Réalité</p>
+                      <p className="text-sm text-foreground">{item.reality}</p>
+                    </div>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* FAQ Accordion — vos questions */}
+      <section className="py-16 sm:py-28 px-4 ambient-shapes">
+        <div className="container max-w-3xl">
+          <AnimateOnScroll>
+            <div className="text-center mb-8 sm:mb-12">
+              <p className="label-mono mb-4 text-center">Vos questions</p>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold">
+                Les réponses <span className="text-gradient">concrètes</span>
+              </h2>
+            </div>
+          </AnimateOnScroll>
+          <StaggerContainer className="space-y-3" staggerDelay={0.08}>
+            {faqItems.map((item) => (
+              <StaggerItem key={item.q}>
+                <FaqItem question={item.q} answer={item.a} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Pas trouvé la réponse ? */}
+      <section className="py-16 sm:py-28 px-4">
+        <div className="container max-w-2xl">
+          <AnimateOnScroll>
+            <div className="text-center mb-8 sm:mb-12">
+              <p className="label-mono mb-4 text-center">Votre question</p>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4">
+                Pas trouvé la <span className="text-gradient">réponse</span> ?
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base">
+                Posez votre question, je vous réponds sous 24h.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll animation="fadeUp" delay={0.1}>
+            {sent ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center p-8 sm:p-12 rounded-xl border border-primary/30 bg-primary/5"
+              >
+                <div className="text-4xl mb-4">✓</div>
+                <h3 className="text-xl font-bold mb-2">Question envoyée !</h3>
+                <p className="text-sm text-muted-foreground mb-6">
+                  Merci, je vous réponds sous 24h.
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={() => setSent(false)}
+                  className="tracking-wider uppercase text-xs"
+                >
+                  Poser une autre question
+                </Button>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleQuestionSubmit} className="space-y-4 p-6 sm:p-8 rounded-xl border border-border bg-card/50">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-1.5 block">Nom *</label>
+                    <Input
+                      value={questionName}
+                      onChange={(e) => setQuestionName(e.target.value)}
+                      placeholder="Votre nom ou entreprise"
+                      className="bg-background border-border"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1.5 block">Email *</label>
+                    <Input
+                      type="email"
+                      value={questionEmail}
+                      onChange={(e) => setQuestionEmail(e.target.value)}
+                      placeholder="votre@email.com"
+                      className="bg-background border-border"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1.5 block">Votre question *</label>
+                  <Textarea
+                    value={questionText}
+                    onChange={(e) => setQuestionText(e.target.value)}
+                    placeholder="Décrivez votre question ou votre besoin..."
+                    rows={4}
+                    className="bg-background border-border"
+                    required
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  disabled={isSending}
+                  className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 tracking-wider uppercase text-xs px-8 py-5"
+                >
+                  {isSending ? (
+                    "Envoi en cours..."
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 mr-2" />
+                      Envoyer ma question
+                    </>
+                  )}
+                </Button>
+              </form>
+            )}
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+    </>
+  );
+};
+
+export default FaqPage;
