@@ -14,22 +14,9 @@
 
 Ce dépôt contient le code source du site [arkaniz.com](https://arkaniz.com), développeur web freelance en France.
 
-Le site présente ma démarche, mes réalisations et mes services, et permet de me contacter pour échanger sur un projet.
+Le site présente ma démarche, mes réalisations et permet de me contacter pour échanger sur un projet.
 
-## Réalisations présentées
 
-| Projet | Description | Lien |
-| --- | --- | --- |
-| **Sarah Rebai** | Site web pour une artiste musicale | [sarahrebai.netlify.app](https://sarahrebai.netlify.app/) |
-| **LeveLaunch** | Projet personnel : plateforme de financement participatif pour créateurs indépendants (React, Supabase, Stripe) | [levelaunch.arkaniz.workers.dev](https://levelaunch.arkaniz.workers.dev/) |
-
-## Ce qui a été soigné
-
-- **Performance** : routes chargées à la demande, CSS critique intégré, polices auto-hébergées, script de mesure d'audience différé.
-- **Sécurité** : en-têtes HTTP renforcés (CSP, HSTS, X-Frame-Options, Permissions-Policy), validation et échappement des données du formulaire côté serveur.
-- **Référencement** : métadonnées Open Graph et Twitter, URL canonique, `robots.txt`.
-- **Expérience** : interface sur-mesure en thème sombre, animations fluides, affichage adapté au mobile.
-- **Conformité** : mentions légales, CGV et politique de confidentialité.
 
 ## Stack
 
