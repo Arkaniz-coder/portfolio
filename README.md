@@ -12,7 +12,7 @@
 
 ## À propos
 
-Ce dépôt contient le code source du site [arkaniz.com](https://arkaniz.com), le portfolio de **Mehdi.A**, développeur web freelance en France.
+Ce dépôt contient le code source du site [arkaniz.com](https://arkaniz.com), développeur web freelance en France.
 
 Le site présente ma démarche, mes réalisations et mes services, et permet de me contacter pour échanger sur un projet.
 
@@ -41,6 +41,6 @@ Pour discuter d'un projet : [arkaniz.com](https://arkaniz.com)
 
 ## Licence
 
-© 2026 Mehdi A, Arkaniz. Tous droits réservés.
+© 2026 Arkaniz. Tous droits réservés.
 
 Ce code source est propriétaire : toute reproduction, modification ou réutilisation, totale ou partielle, est interdite sans autorisation écrite préalable.
