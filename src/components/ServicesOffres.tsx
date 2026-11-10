@@ -11,7 +11,7 @@ const services = [
       "Design sur-mesure adapté à votre identité",
       "Responsive mobile-first",
       "SEO optimisé dès le départ",
-      "Livraison rapide et accompagnement inclus",
+      "Accompagnement inclus, du brief à la mise en ligne",
     ],
   },
   {

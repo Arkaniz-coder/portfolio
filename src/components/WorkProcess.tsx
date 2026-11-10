@@ -20,7 +20,7 @@ const steps = [
     icon: Code2,
     number: "03",
     title: "Développement",
-    description: "Je code votre site avec les dernières technologies. Performance et qualité garanties.",
+    description: "Je code votre site avec des technologies modernes, en soignant la performance et la qualité.",
     color: "from-primary/20 to-primary/5",
   },
   {

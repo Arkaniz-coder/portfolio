@@ -49,7 +49,7 @@ const FaqPage = () => {
     },
     {
       q: "Quel est le délai de livraison ?",
-      a: "En moyenne : 2-3 semaines pour une landing page, 3-4 semaines pour un site vitrine, 5-6 semaines pour un e-commerce. Des options de livraison accélérée sont disponibles.",
+      a: "Le délai dépend de la complexité du projet : nombre de pages, fonctionnalités, contenus à fournir et rapidité des retours. Je préfère vous proposer un calendrier réaliste, défini ensemble dans le devis, plutôt qu'une promesse que je ne pourrais pas tenir.",
     },
     {
       q: "Comment se passe le paiement ?",
@@ -96,7 +96,7 @@ const FaqPage = () => {
     },
     {
       myth: "Il faut des mois pour avoir un site",
-      reality: "2 à 6 semaines selon la complexité. Un processus optimisé pour des livraisons rapides sans sacrifier la qualité.",
+      reality: "Pas forcément. Le délai dépend de la complexité de votre projet et de la rapidité des échanges : il est défini ensemble dans le devis, avec un calendrier réaliste.",
     },
     {
       myth: "Le design, c'est juste du beau",

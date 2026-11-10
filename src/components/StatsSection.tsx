@@ -49,7 +49,6 @@ const AnimatedCounter = ({
 
 const stats = [
   { label: "Sites en production", value: <AnimatedCounter target={2} /> },
-  { label: "Délai de livraison", value: "2-6 sem", isText: true },
   { label: "Réponse garantie", value: "24h", isText: true },
   { label: "Interlocuteur unique", value: <AnimatedCounter target={1} /> },
 ];
@@ -59,13 +58,13 @@ const StatsSection = () => {
     <section className="py-16 sm:py-20 px-4 border-y border-border/30 bg-gradient-to-r from-primary/[0.03] via-transparent to-primary/[0.03]">
       <div className="container max-w-5xl">
         <AnimateOnScroll>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-6">
+          <div className="grid grid-cols-3 gap-4 sm:gap-6">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient-animate font-display leading-tight">
                   {stat.value}
                 </div>
-                <div className="text-[10px] sm:text-xs text-muted-foreground tracking-[0.15em] uppercase mt-2 font-mono">
+                <div className="text-[10px] sm:text-xs text-muted-foreground tracking-[0.1em] sm:tracking-[0.15em] uppercase mt-2 font-mono">
                   {stat.label}
                 </div>
               </div>
