@@ -1,12 +1,10 @@
 import { useEffect, useRef } from "react";
 
+const INTERACTIVE =
+  "a[href], button:not([disabled]), [role='button'], input, textarea, select, .cursor-pointer, .pill, .glow-card";
+
 const CustomCursor = () => {
   const dotRef = useRef<HTMLDivElement>(null);
-  const pos = useRef({ x: 0, y: 0 });
-  const current = useRef({ x: 0, y: 0 });
-  const hovering = useRef(false);
-  const visible = useRef(false);
-  const raf = useRef(0);
 
   useEffect(() => {
     // Only show on desktop with fine pointer (mouse) and wide screen
@@ -16,60 +14,36 @@ const CustomCursor = () => {
     const dot = dotRef.current;
     if (!dot) return;
 
+    let visible = false;
+
+    // Aucun lissage : le curseur natif est masqué sur le site, donc toute interpolation
+    // se voit comme un retard entre le point et la vraie souris.
     const handleMouseMove = (e: MouseEvent) => {
-      pos.current.x = e.clientX;
-      pos.current.y = e.clientY;
-      if (!visible.current) {
-        visible.current = true;
+      dot.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      if (!visible) {
+        visible = true;
         dot.style.opacity = "1";
       }
     };
 
-    const handleMouseLeave = () => {
-      visible.current = false;
-      dot.style.opacity = "0";
-    };
-
-    const handleMouseEnter = () => {
-      visible.current = true;
-      dot.style.opacity = "1";
-    };
-
     const handleOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const interactive = target.closest(
-        "a[href], button:not([disabled]), [role='button'], input, textarea, select, .cursor-pointer, .pill, .glow-card"
-      );
-      hovering.current = !!interactive;
+      const interactive = e.target instanceof Element && e.target.closest(INTERACTIVE);
+      dot.dataset.hover = interactive ? "true" : "false";
     };
 
-    const animate = () => {
-      // Lerp for smooth following
-      const ease = 0.15;
-      current.current.x += (pos.current.x - current.current.x) * ease;
-      current.current.y += (pos.current.y - current.current.y) * ease;
-
-      const size = hovering.current ? 48 : 10;
-      dot.style.transform = `translate(${current.current.x - size / 2}px, ${current.current.y - size / 2}px)`;
-      dot.style.width = `${size}px`;
-      dot.style.height = `${size}px`;
-      dot.style.borderWidth = hovering.current ? "2px" : "0px";
-
-      raf.current = requestAnimationFrame(animate);
+    const handleLeave = () => {
+      visible = false;
+      dot.style.opacity = "0";
     };
 
     document.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("mouseover", handleOver, { passive: true });
-    document.addEventListener("mouseenter", handleMouseEnter);
-    document.addEventListener("mouseleave", handleMouseLeave);
-    raf.current = requestAnimationFrame(animate);
+    document.documentElement.addEventListener("mouseleave", handleLeave);
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseover", handleOver);
-      document.removeEventListener("mouseenter", handleMouseEnter);
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      cancelAnimationFrame(raf.current);
+      document.documentElement.removeEventListener("mouseleave", handleLeave);
     };
   }, []);
 
@@ -79,9 +53,8 @@ const CustomCursor = () => {
       className="cursor-dot"
       style={{
         opacity: 0,
-        transition: "width 0.2s ease-out, height 0.2s ease-out, border-width 0.2s ease-out",
         willChange: "transform",
-        transform: "translate(-100px, -100px)",
+        transform: "translate3d(-100px, -100px, 0)",
       }}
     />
   );
