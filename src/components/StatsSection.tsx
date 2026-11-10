@@ -51,7 +51,7 @@ const stats = [
   { label: "Sites en production", value: <AnimatedCounter target={2} /> },
   { label: "Délai de livraison", value: "2-6 sem", isText: true },
   { label: "Réponse garantie", value: "24h", isText: true },
-  { label: "À partir de", value: <AnimatedCounter target={690} suffix="€" /> },
+  { label: "Interlocuteur unique", value: <AnimatedCounter target={1} /> },
 ];
 
 const StatsSection = () => {

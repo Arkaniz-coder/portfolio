@@ -40,7 +40,7 @@ const FaqAccordion = ({ question, answer }: { question: string; answer: string }
 const previewFaqs = [
   {
     q: "Combien coûte un site web ?",
-    a: "Mes tarifs commencent à 690€ HT. Le prix final dépend des fonctionnalités, du design et du délai. Écrivez-moi sur WhatsApp pour une estimation rapide.",
+    a: "Le prix dépend des fonctionnalités, du design et du délai. Écrivez-moi sur WhatsApp pour recevoir un devis gratuit et personnalisé.",
   },
   {
     q: "Quel est le délai de livraison ?",

@@ -45,7 +45,7 @@ const FaqPage = () => {
   const faqItems = [
     {
       q: "Combien coûte un site web ?",
-      a: "Mes tarifs commencent à 690€ HT. Le prix final dépend des fonctionnalités, du design et du délai. Écrivez-moi sur WhatsApp pour une estimation rapide.",
+      a: "Le prix dépend des fonctionnalités, du design et du délai. Écrivez-moi sur WhatsApp pour recevoir un devis gratuit et personnalisé.",
     },
     {
       q: "Quel est le délai de livraison ?",
@@ -65,7 +65,7 @@ const FaqPage = () => {
     },
     {
       q: "Proposez-vous de la maintenance ?",
-      a: "Oui. Un support post-livraison est inclus avec chaque projet. Des forfaits de maintenance mensuelle sont aussi disponibles à partir de 49€/mois.",
+      a: "Oui. Un support post-livraison est inclus avec chaque projet. Des forfaits de maintenance mensuelle sont aussi disponibles sur devis.",
     },
     {
       q: "Quelles technologies utilisez-vous ?",
@@ -84,7 +84,7 @@ const FaqPage = () => {
   const myths = [
     {
       myth: "Un site web coûte forcément une fortune",
-      reality: "Mes tarifs démarrent à 690€ HT, avec un devis clair et sans frais cachés.",
+      reality: "Chaque projet fait l'objet d'un devis clair et détaillé, sans frais cachés : vous savez ce que vous payez avant de vous engager.",
     },
     {
       myth: "Un freelance est moins fiable qu'une agence",
